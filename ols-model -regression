@@ -1,0 +1,41 @@
+import pandas as pd
+import seaborn as sns
+import numpy as np 
+import matplotlib.pyplot as plt
+from scipy import stats
+
+
+
+df = pd.read_excel(r"C:\Users\ksale\jn\Ice Cream Ratings.xlsx")
+
+
+df2=df.corr()
+
+
+import statsmodels.formula.api as smf
+models = smf.ols('Flavor_Rating ~ Texture_Rating' , data = df).fit()
+print(models.summary())
+
+
+ OLS Regression Results                            
+==============================================================================
+Dep. Variable:          Flavor_Rating   R-squared:                       0.044
+Model:                            OLS   Adj. R-squared:                 -0.147
+Method:                 Least Squares   F-statistic:                    0.2299
+Date:                Wed, 17 Jan 2024   Prob (F-statistic):              0.652
+Time:                        22:41:57   Log-Likelihood:                0.49617
+No. Observations:                   7   AIC:                             3.008
+Df Residuals:                       5   BIC:                             2.899
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==================================================================================
+                     coef    std err          t      P>|t|      [0.025      0.975]
+----------------------------------------------------------------------------------
+Intercept          0.3820      0.161      2.371      0.064      -0.032       0.796
+Texture_Rating     0.1617      0.337      0.479      0.652      -0.705       1.028
+==============================================================================
+Omnibus:                          nan   Durbin-Watson:                   2.707
+Prob(Omnibus):                    nan   Jarque-Bera (JB):                0.907
+Skew:                           0.881   Prob(JB):                        0.636
+Kurtosis:                       3.043   Cond. No.                         3.85
+==============================================================================    
